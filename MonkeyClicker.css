@@ -1,0 +1,16 @@
+#BANANA {
+  position: fixed;
+  z-index: -1000000000000;
+  top:-10;
+  left:-10;
+}
+
+h1 {
+  color: white;
+  font-size: 100;
+  text-align: center;
+}
+
+#Monkey1 {
+  height: 300;
+}
