@@ -5,12 +5,39 @@
   left:-10;
 }
 
-h1 {
-  color: white;
-  font-size: 100;
-  text-align: center;
+#header{
+position: absolute;
+z-index: -10;
+height: 100;
+left: 510;
+top: -5
 }
 
-#Monkey1 {
-  height: 300;
+#pointMeter{
+position: fixed;
+z-index: 10;
+height: 100;
+left: -20;
+}
+
+#points {
+position: fixed;
+color: black;
+font-size: 50;
+text-align: center;
+font-family: fantasy;
+top: -10;
+z-index: 100
+
+}
+
+h1 {
+  color: black;
+  font-size: 50;
+  text-align: center;
+  font-family: fantasy;
+}
+
+.Monkeys {
+  height: 500;
 }
