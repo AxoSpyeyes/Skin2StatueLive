@@ -1,6 +1,6 @@
 #BANANA {
   position: fixed;
-  z-index: -1000000000000;
+  z-index: -1000;
   top:-10;
   left:-10;
 }
@@ -41,10 +41,15 @@ z-index: 100
 }
 
 #monkeyBox {
-padding-top: 100px
-
+padding-top: 100px;
 }
 
 .Monkeys {
   height: 500;
+  display: none;
+}
+
+#buyButton {
+  height: 500;
+  display: none;
 }
