@@ -84,10 +84,9 @@ function addPoint(x) {
     }
     if (points <= 1000000000000 && points >= 1000000000) {
       document.getElementById("display").innerHTML = Math.round(points/1000000000*10)/10+"B";
-    } else {
-      document.getElementById("display").innerHTML = Math.round(points/1000000000000*10)/10+"T";
-
     }
+
+
 }
 
 function showBuyButton(monkey) {
