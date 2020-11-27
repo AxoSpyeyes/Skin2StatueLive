@@ -29,6 +29,8 @@ var monkeys = [
   {"id":"Monkey8", "cost":"10000", "points":"500", "src":"https://i.imgur.com/epeHal4.png"},
   {"id":"Monkey9", "cost":"100000", "points":"1000", "src":"https://i.imgur.com/05Mvqem.png"},
   {"id":"Monkey10", "cost":"694200", "points":"2000", "src":"https://i.imgur.com/m4D1lHQ.png"},
+  {"id":"Monkey11", "cost":"750000", "points":"-10", "src":"https://i.imgur.com/jbqMnyt.png"},
+  {"id":"Monkey12", "cost":"2000000", "points":"6900", "src":"https://i.imgur.com/f2CqlT5.png"},
 ];
 var numbersimplifier = [
   {"number":"1", "letter":" "},
@@ -43,7 +45,7 @@ var nextMonkey = {};
 var boughtMonkeys = [];
 
 function load() {
-  document.getElementById("display").innerHTML = points;
+  addPoint(0);
   for (const monkey of monkeys) {
     initMonkey(monkey);
   }
@@ -79,8 +81,11 @@ function addPoint(x) {
       }
     }
     for (const number of numbersimplifier) {
-      if (points <= number.number * 1000 && points >= number.number){
-        document.getElementById("display").innerHTML = Math.round(points / number.number * 10)/10 + number.letter;
+        if (points * -1 <= number.number * 1000 && points *-1 > number.number){
+          document.getElementById("display").innerHTML = Math.round(points / number.number * 10)/10 + number.letter;
+        }
+        if (points <= number.number * 1000 && points >= number.number){
+          document.getElementById("display").innerHTML = Math.round(points / number.number * 10)/10 + number.letter;
       }
     }
   }

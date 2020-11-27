@@ -12,7 +12,6 @@
   top: -5;
   color: black;
   font-size: 50;
-  font-family: fantasy;
 }
 
 #header{
@@ -35,7 +34,6 @@ position: fixed;
 color: black;
 font-size: 50;
 text-align: center;
-font-family: fantasy;
 top: -10;
 z-index: 100
 }
