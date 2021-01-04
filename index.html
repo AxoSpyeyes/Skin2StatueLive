@@ -1,113 +1,41 @@
-<DOCTYPE html>
+<!DOCTYPE html>
 <html>
-<head>
-    <meta charset="utf-8">
-  <title>Monke click</title>
-  <link href="MonkeyClicker.css" rel="stylesheet" type="text/css">
-</head>
-<body>
-    <h1 id="points"><span id="display"></span> Points</h1>
-    <img id="pointMeter" src="https://i.imgur.com/G3c9glP.png">
-  <h1 id="textheader">Monke clik</h1>
-  <img id="header" src="https://i.imgur.com/8wQxrTM.png ">
+  <head>
+    <link href="styles.css"  rel="stylesheet" type="text/css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.js" type="text/javascript" charset="utf-8"></script>
+    <script src="scripts.js" type="text/javascript" charset="utf-8"></script>
+    <script src="loadMap.js" type="text/javascript" charset="utf-8"></script>
+  </head>
+  <body onload="initVariables();">
 
-    <img id="BANANA" onload="load()"src="https://i.imgur.com/702vfqi.png">
-    <div id="monkeyBox"></div>
-</body>
+    <h1>Skin 2 statue </h1>
+
+    <h2>Input skin</h2>
+
+    <input type="file" accept="image/*" id="fileInput" name="skinfile" onchange="loadFile(event)"/>
+    <br />
+    <img id="inputskin" crossOrigin="Anonymous" onclick="" />
+    <br />
+    <input type="button" value="Click to convert" onclick="mapAll(mapjson);" />
+
+    <h2>Output statue </h2>
+
+    <canvas id="inputCanvas" width="64" height="64"> </canvas>
+    <canvas id="inputCanvasFlip" width="64" height="64"> </canvas>
+    <canvas id="outputCanvas" width="196" height="33"> </canvas>
+    <br />
+    <a id="outputImageLink" download="" >
+          <canvas id="outputCanvasBig"> </canvas>
+    </a>
+
+    <script type="text/javascript">
+      // Now to something completely different
+      //var output_canvas = document.createElement('canvas');
+      var output_canvas = document.getElementById('outputCanvas');
+      var output_canvas_big = document.getElementById('outputCanvasBig');
+
+      var output_ctx = output_canvas.getContext('2d');
+
+    </script>
+  </body>
 </html>
-
-<script>
-var points = 0;
-var monkeys = [
-  {"id":"Monkey1", "cost":"null", "points":"1", "src":"https://i.imgur.com/IaKkPwM.png"},
-  {"id":"Monkey2", "cost":"20", "points":"3", "src":"https://i.imgur.com/7ldAhBA.png"},
-  {"id":"Monkey3", "cost":"80", "points":"5", "src":"https://i.imgur.com/LRrr20R.png"},
-  {"id":"Monkey4", "cost":"180", "points":"10", "src":"https://i.imgur.com/BJK1nmL.png"},
-  {"id":"Monkey5", "cost":"420", "points":"20", "src":"https://i.imgur.com/Pl1AQAO.png"},
-  {"id":"Monkey6", "cost":"1000", "points":"50", "src":"https://i.imgur.com/Ndowwmq.png"},
-  {"id":"Monkey7", "cost":"2500", "points":"100", "src":"https://i.imgur.com/q5hM3Ge.png"},
-  {"id":"Monkey8", "cost":"10000", "points":"500", "src":"https://i.imgur.com/epeHal4.png"},
-  {"id":"Monkey9", "cost":"100000", "points":"1000", "src":"https://i.imgur.com/05Mvqem.png"},
-  {"id":"Monkey10", "cost":"694200", "points":"2000", "src":"https://i.imgur.com/m4D1lHQ.png"},
-  {"id":"Monkey11", "cost":"750000", "points":"-10", "src":"https://i.imgur.com/jbqMnyt.png"},
-  {"id":"Monkey12", "cost":"2000000", "points":"6900", "src":"https://i.imgur.com/f2CqlT5.png"},
-];
-var numbersimplifier = [
-  {"number":"1", "letter":" "},
-  {"number":"1000", "letter":"K"},
-  {"number":"1000000", "letter":"M"},
-  {"number":"1000000000", "letter":"B"},
-  {"number":"1000000000000", "letter":"T"},
-  {"number":"1000000000000000", "letter":"Q"},
-];
-
-var nextMonkey = {};
-var boughtMonkeys = [];
-
-function load() {
-  addPoint(0);
-  for (const monkey of monkeys) {
-    initMonkey(monkey);
-  }
-  initBuyButton();
-  showMonkey("Monkey1");
-}
-
-function initMonkey(monkey) {
-  var img = document.createElement("img");
-  img.id = monkey.id;
-  img.src = monkey.src;
-  img.className = "Monkeys";
-  img.onclick = function() {addPoint(Number(monkey.points))};
-  var monkeyBox = document.getElementById("monkeyBox");
-  monkeyBox.appendChild(img);
-  }
-
-function initBuyButton() {
-  var img = document.createElement("img");
-  img.id = "buyButton";
-  img.onclick = function() {buyMonkey();}
-  img.src = "https://i.imgur.com/7loi27a.png";
-  var monkeyBox = document.getElementById("monkeyBox");
-  monkeyBox.appendChild(img);
-}
-
-function addPoint(x) {
-    points = points+x;
-
-    for (const monkey of monkeys) {
-      if (points >= monkey.cost && !isMonkeyBought(monkey.id)) {
-      showBuyButton(monkey);
-      }
-    }
-    for (const number of numbersimplifier) {
-        if (points * -1 <= number.number * 1000 && points *-1 > number.number){
-          document.getElementById("display").innerHTML = Math.round(points / number.number * 10)/10 + number.letter;
-        }
-        if (points <= number.number * 1000 && points >= number.number){
-          document.getElementById("display").innerHTML = Math.round(points / number.number * 10)/10 + number.letter;
-      }
-    }
-  }
-
-function showBuyButton(monkey) {
-  document.getElementById("buyButton").style.display = "inline";
-  nextMonkey = monkey;
-}
-
-function showMonkey(id) {
-  document.getElementById(id).style.display = "inline";
-}
-
-function buyMonkey() {
-  showMonkey(nextMonkey.id)
-    document.getElementById("buyButton").style.display = "none";
-    boughtMonkeys.push(nextMonkey.id);
-    addPoint(-nextMonkey.cost);
-}
-
-function isMonkeyBought(id) {
-  return boughtMonkeys.includes(id);
-}
-
-</script>

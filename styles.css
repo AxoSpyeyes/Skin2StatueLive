@@ -1,0 +1,11 @@
+#inputskin {
+  width: 64px ;
+  height: 64px ;
+}
+#inputCanvas, #outputCanvas, #inputCanvasFlip {
+  display:none;
+}
+
+#outputCanvasBig {
+  outline: black 1px solid;
+}
